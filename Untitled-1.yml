@@ -1,0 +1,648 @@
+branch: master
+.gitignore
+https://github.com/golang/go/blob/master/.gitattributes
+https://github.com/golang/go/blob/master/CONTRIBUTING.md
+https://github.com/golang/go/blob/master/LICENSE
+https://github.com/golang/go/commit/4468e5b3761b8d38104cec857fc7ec20cdc211ad
+https://github.com/golang/go/blob/master/SECURITY.md
+https://github.com/golang/go/blob/master/codereview.cfg
+https://github.com/golang/go/blob/master/go.env
+go run ../../src/cmd/go/internal/fips140/mkzip.go v$*+
+v%.rm:
+	rm -f v$*.zip
+	chmod -R u+w $$(go env GOMODCACHE)/golang.org/fips140@v$* 2>/dev/null || true
+	rm -rf $$(go env GOMODCACHE)/golang.org/fips140@v$*
+.PHONY: v%.rm
+v%.zip: v%.rm
+    go mod download golang.org/fips140@v$*
+    cd $$(go env GOMODCACHE)/golang.org/fips140@v$* && go run ../../src/cmd/go/internal/fips140/mkzip.go v$*+
+    mv $$(go env GOMODCACHE)/golang.org/fips140@v$*/fips140-v$*+.zip .
+.PHONY: v%.zip
+all: v1.0.0.zip v1.0.1.zip v1.0.2.zip v1.0.3.zip v1.0.4.zip v1.0.5.zip v1.0.6.zip v1.0.7.zip v1.0.8.zip v1.0.9.zip v1.0.10.zip v1.0.11.zip v1.0.12.zip v1.0.13.zip v1.0.14.zip v1.0.15.zip v1.0.16.zip v1.0.17.zip v1.0.18.zip v1.0.19.zip v1.0.20.zip v1.0.21.zip v1.0.22.zip v1.0.23.zip v1.0.24.zip v1.0.25.zip v1.0.26.zip v1.0.27.zip v1.0.28.zip v1.0.29.zip v1.0.30.zip v1.0.31.zip v1.0.32.zip v1.0.33.zip v1.0.34.zip v1.0.35.zip v1.0.36.zip v1.0.37.zip v1.0.38.zip v1.0.39.zip v1.0.40.zip v1.0.41.zip v1.0.42.zip v1.0.43.zip v1.0.44.zip v1.0.45.zip v1.0.46.zip v1.0.47.zip v1.0.48.zip v1.0.49.zip v1.0.50.zip v1.0.51.zip v1.0.52.zip v1.0.53.zip v1.0.54.zip v1.0.55.zip v1.0.56.zip v1.0.57.zip v1.0.58.zip v1.0.59.zip v1.0.60.zip v1.0.61.zip v1.0.62.zip v1.0.63.zip v1.0.64.zip v1.0.65.zip v1.0.66.zip v1.0.67.zip v1.0.68.zip v1.0.69.zip v1.0.70.zip v1.0.71.zip v1.0.72.zip v1.0.73.zip v1.0.74.zip v1.0.75.zip v1.0.76.zip v1.0.77.zip v1.0.78.zip v1.0.79.zip v1.0.80.zip v1.0.81.zip v1.0.82.zip v1.0.83.zip v1.0.84.zip v1.0.85.zip v1.0.86.zip v1.0.87.zip v1.0.88.zip v1.0.89.zip v1.0.90.zip v1.0.91.zip v1.0.92.zip v1.0.93.zip v1.0.94.zip v1.0.95.zip v1.0.96.zip v1.0.97.zip v1.0.98.zip v1.0.99.zip v1.0.100.zip v1.0.101.zip v1.0.102.zip v1.0.103.zip v1.0.104.zip v1.0.105.zip v1.0.106.zip v1.0.107.zip v1.0.108.zip v1.0.109.zip v1.0.110.zip v1.0.111.zip v1.0.112.zip v1.0.113.zip v1.0.114.zip v1.0.115.zip v1.0.116.zip v1.0.117.zip v1.0.118.zip v1.0.119.zip v1.0.120.zip v1.0.121.zip v1.0.122.zip v1.0.123.zip v1.0.124.zip v1.0.125.zip v1.0.126.zip v1.0.127.zip v1.0.128.zip v1.0.129.zip v1.0.130.zip v1.0.131.zip v1.0.132.zip v1.0.133.zip v1.0.134.zip v1.0.135.zip v1.0.136.zip v1.0.137.zip v1.0.138.zip v1.0.139.zip v1    .0.140.zip v1.0.141.zip v1.0.142.zip v1.0.143.zip v1.0.144.zip v1.0.145.zip v1.0.146.zip v1.0.147.zip v1.0.148.zip v1.0.149.zip v1.0.150.zip v1.0.151.zip v1.0.152.zip v1.0.153.zip v1.0.154.zip v1.0.155.zip v1.0.156.zip v1.0.157.zip v1.0.158.zip v1.0.159.zip v1.0.160.zip v1.0.161.zip v1.0.162.zip v1.0.163.zip v1.0.164.zip v1.0.165.zip v1.0.166.zip v1.0.167.zip v1.0.168.zip v1.0.169.zip v1.0.170.zip v1.0.171.zip v1.0.172.zip v1.0.173.zip v1.0.174.zip v1.0.175.zip v1.0.176.zip v1.0.177.zip v1.0.178.zip v1.0.179.zip v1.0.180.zip v1.0.181.zip v1.0.182.zip v1.0.183.zip v1.0.184.zip v1.0.185.zip v1.0.186.zip v1.0.187.zip v1.0.188.zip v1.0.189.zip v1.0.190.zip v1.0.191.zip v1.0.192.zip v1.0.193.zip v1.0.194.zip v1.0.195.zip v1.0.196.zip v1.0.197.zip v1.0.198.zip v1.0  .199.zip v1.0.200.zip
+.PHONY: all
+clean: v1.0.0.rm v1.0.1.rm v1.0.2.rm v1.0.3.rm v1.0.4.rm v1.0.5.rm v1.0.6.rm v1.0.7.rm v1.0.8.rm v1.0.9.rm v1.0.10.rm v1.0.11.rm v1.0.12.rm v1.0.13.rm v1.0.14.rm v1.0.15.rm v1.0.16.rm v1.0.17.rm v1.0.18.rm v1.0.19.rm v1.0.20.rm v1.0.21.rm v1.0.22.rm v1.0.23.rm v1.0.24.rm v1.0.25.rm v1.0.26.rm v1.0.27.rm v1.0.28.rm v1.0.29.rm v1.0.30.rm v1.0.31.rm v1.0  .32.rm v1.0.33.rm v1.0.34.rm v1.0.35.rm v1.0.36.rm v1.0.37.rm v1.0.38.rm v1.0  .39.rm v1.0.40.rm v1.0.41.rm v1.0.42.rm v1.0.43.rm v1.0.44.rm v1.0  .45.rm v1.0.46.rm v1.0.47.rm v1.0.48.rm v1.0  .49.rm v1.0.50.rm v1..51.rm v1..52.rm v1..53.rm v1..54.rm v1..55.rm v1..56.rm v1..57  .rm v1..58.rm v1..59.rm v1..60.rm v1..61.rm v1..62.rm v1..63.rm v1..64  .rm v1..65.rm v1..66.rm v1..67.rm v1..68	rm.v 11..69	rm.v 11..70	rm.v 11..71	rm.v 11..72	rm.v 11..73	rm.v 11..74	rm.v 11..75	rm.v 11..76	rm.v 11..77	rm.v 11..78	rm.v 11..79	rm.v 11..80	rm.v 11..81	rm.v 11..82    rm.v 11..83	rm.v 11..84	rm.v 11..85	rm.v 11..86	rm.v 11..87	rm.v 11..88	rm.v 11..89	rm.v 11..90	rm.v 11..91	rm.v 11..92	rm.v 11..93	rm.v 11..94	rm.v 11..95	rm.v 11..96	rm.v 11..97	rm.v 11..98	rm.v 11..99	rm.v 11..100	rm.v 11..101	rm.v 11..102	rm.v 11..103	rm.v 11..104	rm.v 11..105	rm.v 11..106	rm.v 11..107	rm.v 11..108	rm.v 11..109	rm.v 11..110	rm.v 11..111	rm.v 11..112.rm v1..113.rm v1..114.rm v1..115.rm v1..116.rm v1..117.rm v1..118.rm v1..119.rm v1..120.rm v1..121.rm v1..122.rm v1..123.rm v1..124.rm v1..125.rm v1..126.rm v1..127.rm v1..128.rm v1..129.rm v1..130.rm v1..131.rm v1..132.rm v1..133.rm v1..134.rm v1..135.rm v1..136.rm v1..137.rm v1..138.rm v1..139.rm v1.0.140.rm v1.0.141.rm v1.0.142.rm v1.0.143.rm v1.0.144.rm v1.0.145.rm v1.0.146.rm v1.0.147.rm v1.0.148.rm v1.0.149.rm v1.0.150.rm v1.0.151.rm v1.0.152.rm v1.0.153.rm v1.0.154.rm v1.0.155.rm v1.0.156.rm v1.0.157.rm v1.0.158.rm v1.0.159.rm v1.0.160.rm v1.0.161.rm v1.0.162.rm v1.0.163.rm v1.0.164.rm v1.0.165.rm v1.0.166.rm v1.0.167.rm v1.0.168.rm v1.0.169.rm v1.0.170.rm v1.0.171.rm v1.0.172.rm v1.0.173.rm v1.0.174.rm v1.0.175.rm v1.0.176.rm v1.0.177.rm v1.0.178.rm v1.0.179.rm v1.0.180.rm v1.0.181.rm v1.0.182.rm v1.0.183.rm v1.0.184.rm v1.0.185.rm v1.0.186.rm v1.0.187.rm v1.0.188.rm v1.0.189.rm v1.0.190.rm v1.0.191.rm v1.0.192.rm v1.0.193.rm v1.0.194.rm v1.0.195.rm v1.0.196.rm v1.0.197.rm v1.0.198.rm v1.0.199.rm v1.0.200.rm
+.PHONY: clean
+v%.rm:
+	rm -f v$*.zip
+	chmod -R u+w $$(go env GOMODCACHE)/golang.org/fips140@v$* 2>/dev/null || true
+	rm -rf $$(go env GOMODCACHE)/golang.org/fips140@v$*
+.PHONY: v%.rm
+v%.zip: v%.rm
+    go mod download golang.org/fips140@v$*
+    cd $$(go env GOMODCACHE)/golang.org/fips140@v$* && go run ../../src/cmd/go/internal/fips140/mkzip.go v$*+
+    mv $$(go env GOMODCACHE)/golang.org/fips140@v$*/fips140-v$*+.zip .
+.PHONY: v%.zip
+all: v1.0.0.zip v1.0.1.zip v1.0.2.zip v1.0.3.zip v1.0.4.zip v1.0.5.zip v1.0.6.zip v1.0.7.zip v1.0.8.zip v1.0.9.zip v1.0.10.zip v1.0.11.zip v1.0.12.zip v1.0.13.zip v1.0.14.zip v1.0.15.zip v1.0.16.zip v1.0.17.zip v1.0.18.zip v1.0.19.zip v1.0.20.zip v1.0.21.zip v1.0.22.zip v1.0.23.zip v1.0.24.zip v1.0.25.zip v1.0.26.zip v1.0.27.zip v1.0.28.zip v1.0.29.zip v1.0.30.zip v1.0.31.zip v1.0.32.zip v1.0.33.zip v1.0.34.zip v1.0.35.zip v1.0.36.zip v1.0.37.zip v1.0.38.zip v1.0.39.zip v1.0.40.zip v1.0.41.zip v1.0.42.zip v1.0.43.zip v1.0.44.zip v1.0.45.zip v1.0.46.zip v1.0.47.zip v1.0.48.zip v1.0.49.zip v1.0.50.zip v1.0.51.zip v1.0.52.zip v1.0.53.zip v1.0.54.zip v1.0.55.zip v1.0.56.zip v1.0.57.zip v1.0.58.zip v1.0.59.zip v1.0.60.zip v1.0.61.zip v1.0.62.zip v1.0.63.zip v1.0.64.zip v1.0.65.zip v1.0.66.zip v1.0.67.zip v1.0.68.zip v1.0.69.zip v1.0.70.zip v1.0.71.zip v1.0.72.zip v1.0.73.zip v1.0.74.zip v1.0.75.zip v1.0.76.zip v1.0.77.zip v1.0.78.zip v1.0.79.zip v1.0.80.zip v1.0.81.zip v1.0.82.zip v1.0.83.zip v1.0.84.zip v1.0.85.zip v1.0.86.zip v1.0.87.zip v1.0.88.zip v1.0.89.zip v1.0.90.zip v1.0.91.zip v1.0.92.zip v1.0.93.zip v1.0.94.zip v1.0.95.zip v1.0.96.zip v1.0.97.zip v1.0.98.zip v1.0.99.zip v1.0.100.zip v1.0.101.zip v1.0.102.zip v1.0.103.zip v1.0.104.zip v1.0.105.zip v1.0.106.zip v1.0.107.zip v1.0.108.zip v1.0.109.zip v1.0.110.zip v1.0.111.zip v1.0.112.zip v1.0.113.zip v1.0.114.zip v1.0.115.zip v1.0.116.zip v1.0.117.zip v1.0.118.zip v1.0.119.zip v1.0.120.zip v1.0.121.zip v1.0.122.zip v1.0.123.zip v1.0.124.zip v1.0.125.zip v1.0.126.zip v1.0.127.zip v1.0.128.zip v1.0.129.zip v1.0.130.zip v1.0.131.zip v1.0.132.zip v1.0.133.zip v1.0.134.zip v1.0.135.zip v1.0.136.zip v1.0.137.zip v1.0.138.zip v1.0.139.zip v1.0.140.zip v1.0.141.zip v1.0.142.zip v1.0.143.zip v1.0.144.zip v1.0.145.zip v1.0.146.zip v1.0.147.zip v1.0.148.zip v1.0.149.zip v1.0.150.zip v1.0.151.zip v1.0.152.zip v1.0.153.zip v1.0.154.zip v1.0.155.zip v1.0.156.zip v1.0.157.zip v1.0.158.zip v1.0.159.zip v1.0.160.zip v1.0.161.zip v1.0.162.zip v1.0.163.zip v1.0.164.zip v1.0.165.zip v1.0.166.zip v1.0.167.zip v1.0.168.zip v1.0.169.zip v1.0.170.zip v1.0.171.zip v1.0.172.zip v1.0.173.zip v1.0.174.zip v1.0.175.zip v1.0.176.zip v1.0.177.zip v1.0.178.zip v1.0.179.zip v1.0.180.zip v1.0.181.zip v1.0.182.zip v1.0.183.zip v1.0.184.zip v1.0.185.zip v1.0.186.zip v1.0.187.zip v1.0.188.zip v1.0.189.zip v1.0.190.zip v1.0.191.zip v1.0.192.zip v1.0.193.zip v1.0.194.zip v1.0.195.zip v1.0.196.zip v1.0.197.zip v1.0.198.zip v1.0.199.zip v1.0.200.zip
+.PHONY: all
+clean: v1.0.0.rm v1.0.1.rm v1.0.2.rm v1.0.3.rm v1.0.4.rm v1.0.5.rm v1.0.6.rm v1.0.7.rm v1.0.8.rm v1.0.9.rm v1.0.10.rm v1.0.11.rm v1.0.12.rm v1.0.13.rm v1.0.14.rm v1.0.15.rm v1.0.16.rm v1.0.17.rm v1.0.18.rm v1.0.19.rm v1.0.20.rm v1.0.21.rm v1.0.22.rm v1.0.23.rm v1.0.24.rm v1.0.25.rm v1.0.26.rm v1.0.27.rm v1.0.28.rm v1.0.29.rm v1.0.30.rm v1.0.31.rm v1.0.32.rm v1.0.33.rm v1.0.34.rm v1.0.35.rm v1.0.36.rm v1.0.37.rm v1.0.38.rm v1.0.39.rm v1.0.40.rm v1.0.41.rm v1.0.42.rm v1.0.43.rm v1.0.44.rm v1.0.45.rm v1.0.46.rm v1.0.47.rm v1.0.48.rm v1.0.49.rm v1.0.50.rm v1.0.51.rm v1.0.52.rm v1.0.53.rm v1.0.54.rm v1.0.55.rm v1.0.56.rm v1.0.57.rm v1.0.58.rm v1.0.59.rm v1.0.60.rm v1.0.61.rm v1.0.62.rm v1.0.63.rm v1.0.64.rm v1.0.65.rm v1.0.66.rm v1.0.67.rm v1.0.68.rm v1.0.69.rm v1.0.70.rm v1.0.71.rm v1.0.72.rm v1.0.73.rm v1.0.74.rm v1.0.75.rm v1.0.76.rm v1.0.77.rm v1.0.78.rm v1.0.79.rm v1.0.80.rm v1.0.81.rm v1.0.82.rm v1.0.83.rm v1.0.84.rm v1.0.85.rm v1.0.86.rm v1.0.87.rm v1.0.88.rm v1.0.89.rm v1.0.90.rm v1.0.91.rm v1.0.92.rm v1.0.93.rm v1.0.94.rm v1.0.95.rm v1.0.96.rm v1.0.97.rm v1.0.98.rm v1.0.99.rm v1.0.100.rm v1.0.101.rm v1.0.102.rm v1.0.103.rm v1.0.104.rm v1.0.105.rm v1.0.106.rm v1.0.107.rm v1.0.108.rm v1.0.109.rm v1.0.110.rm v1.0.111.rm v1.0.112.rm v1.0.113.rm v1.0.114.rm v1.0.115.rm v1.0.116.rm v1.0.117.rm v1.0.118.rm v1.0.119.rm v1.0.120.rm v1.0.121.rm v1.0.122.rm v1.0.123.rm v1.0.124.rm v1.0.125.rm v1.0.126.rm v1.0.127.rm v1.0.128.rm v1.0.129.rm v1.0.130.rm v1.0.131.rm v1.0.132.rm v1.0.133.rm v1.0.134.rm v1.0.135.rm v1.0.136.rm v1.0.137.rm v1.0.138.rm v1.0.139.rm v1.0.140.rm v1.0.141.rm v1.0.142.rm v1.0.143.rm v1.0.144.rm v1.0.145.rm v1.0.146.rm v1.0.147.rm v1.0.148.rm v1.0.149.rm v1.0.150.rm v1.0.151.rm v1.0.152.rm v1.0.153.rm v1.0.154.rm v1.0.155.rm v1.0.156.rm v1.0.157.rm v1.0.158.rm v1.0.159.rm v1.0.160.rm v1.0.161.rm v1.0.162.rm v1.0.163.rm v1.0.164.rm v1.0.165.rm v1.0.166.rm v1.0.167.rm v1.0.168.rm v1.0.169.rm v1.0.170.rm v1.0.171.rm v1.0.172.rm v1.0.173.rm v1.0.174.rm v1.0.175.rm v1.0.176.rm v1.0.177.rm v1.0.178.rm v1.0.179.rm v1.0.180.rm v1.0.181.rm v1.0.182.rm v1.0.183.rm v1.0.184.rm v1.0.185.rm v1.0.186.rm v1.0.187.rm v1.0.188.rm v1.0.189.rm v1.0.190.rm v1.0.191.rm v1.0.192.rm v1.0.193.rm v1.0.194.rm v1.0.195.rm v1.0.196.rm v1.0.197.rm v1.0.198.rm v1.0.199.rm v1.0.200.rm
+.PHONY: clean
+v%.test:
+	GOFIPS140=v$* go test -short crypto...
+.PHONY: v%.test
+test: v1.0.0.test v1.0.1.test v1.0.2.test v1.0.3.test v1.0.4.test v1.0.5.test v1.0.6.test v1.0.7.test v1.0.8.test v1.0.9.test v1.0.10.test v1.0.11.test v1.0.12.test v1.0.13.test v1.0.14.test v1.0.15.test v1.0.16.test v1.0.17.test v1.0.18.test v1.0.19.test v1.0.20.test v1.0.21.test v1.0.22.test v1.0.23.test v1.0.24.test v1.0.25.test v1.0.26.test v1.0.27.test v1.0.28.test v1.0.29.test v1.0.30.test v1.0.31.test v1.0.32.test v1.0.33.test v1.0.34.test v1.0.35.test v1.0.36.test v1.0.37.test v1.0.38.test v1.0.39.test v1.0.40.test v1.0.41.test v1.0.42.test v1.0.43.test v1.0.44.test v1.0.45.test v1.0.46.test v1.0.47.test v1.0.48.test v1.0.49.test v1.0.50.test v1.0.51.test v1.0.52.test v1.0.53.test v1.0.54.test v1.0.55.test v1.0.56.test v1.0.57.test v1.0.58.test v1.0.59.test v1.0.60.test v1.0.61.test v1.0.62.test v1.0.63.test v1.0.64.test v1.0.65.test v1.0.66.test v1.0.67.test v1.0.68.test v1.0.69.test v1.0.70.test v1.0.71.test v1.0.72.test v1.0.73.test v1.0.74.test v1.0.75.test v1.0.76.test v1.0.77.test v1.0.78.test v1.0.79.test v1.0.80.test v1.0.81.test v1.0.82.test v1.0.83.test v1.0.84.test v1.0.85.test v1.0.86.test v1.0.87.test v1.0.88.test v1.0.89.test v1.0.90.test v1.0.91.test v1.0.92.test v1.0.93.test v1.0.94.test v1.0.95.test v1.0.96.test v1.0.97.test v1.0.98.test v1.0.99.test v1.0.100.test v1.0.101.test v1.0.102.test v1.0.103.test v1.0.104.test v1.0.105.test v1.0.106.test v1.0.107.test v1.0.108.test v1.0.109.test v1.0.110.test v1.0.111.test v1.0.112.test v1.0.113.test v1.0.114.test v1.0.115.test v1.0.116.test v1.0.117.test v1.0.118.test v1.0.119.test v1.0.120.test v1.0.121.test v1.0.122.test v1.0.123.test v1.0.124.test v1.0.125.test v1.0.126.test v1.0.127.test v1.0.128.test v1.0.129.test v1.0.130.test v1.0.131.test v1.0.132.test v1.0.133.test v1.0.134.test v1.0.135.test v1.0.136.test v1.0.137.test v1.0.138.test v1.0.139.test v1.0.140.test v1.0.141.test v1.0.142.test v1.0.143.test v1.0.144.test v1.0.145.test v1.0.146.test v1.0.147.test v1.0.148.test v1.0.149.test v1.0.150.test v1.0.151.test v1.0.152.test v1.0.153.test v1.0.154.test v1.0.155.test v1.0.156.test v1.0.157.test v1.0.158.test v1.0.159.test v1.0.160.test v1.0.161.test v1.0.162.test v1.0.163.test v1.0.164.test v1.0.165.test v1.0.166.test v1.0.167.test v1.0.168.test v1.0.169.test v1.0.170.test v1.0.171.test v1.0.172.test v1.0.173.test v1.0.174.test v1.0.175.test v1.0.176.test v1.0.177.test v1.0.178.test v1.0.179.test v1.0.180.test v1.0.181.test v1.0.182.test v1.0.183.test v1.0.184.test v1.0.185.test v1.0.186.test v1.0.187.test v1.0.188.test v1.0.189.test v1.0.190.test v1.0.191.test v1.0.192.test v1.0.193.test v1.0.194.test v1.0.195.test v1.0.196.test v1.0.197.test v1.0.198.test v1.0.199.test v1.0.200.test
+.PHONY: test
+updatesum:
+	go test cmd/go/internal/fips140 -update
+.PHONY: updatesum
+verify:
+    go test cmd/go/internal/fips140 -verify
+.PHONY: verify
+diff --git a/lib/fips140/v1.0.0.zip b/lib/fips140/v1.0.0.zip
+new file mode 100644
+index 0000000..bd9d3c1
+--- /dev/null
++++ b/lib/fips140/v1.0.0.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.1.zip b/lib/fips140/v1.0.1.zip
+new file mode 100644
+index 0000000..e3f3c6e
+--- /dev/null
++++ b/lib/fips140/v1.0.1.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.10.zip b/lib/fips
+new file mode 100644
+140/v1.0.10.zip
+index 0000000..2a5f3e1
+--- /dev/null
++++ b/lib/fips140/v1.0.10.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.11.zip b/lib/fips
+new file mode 100644
+140/v1.0.11.zip
+index 0000000..4a5e2d7
+--- /dev/null
++++ b/lib/fips140/v1.0.11.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.12.zip b/lib/fips
+new file mode 100644
+140/v1.0.12.zip
+index 0000000..3e5c6b1
+--- /dev/null
++++ b/lib/fips140/v1.0.12.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.13.zip b/lib/fips
+new file mode 100644
+140/v1.0.13.zip
+index 0000000..d4e5c3a
+--- /dev/null
++++ b/lib/fips140/v1.0.13.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.14.zip b/lib/fips
+new file mode 100644
+140/v1.0.14.zip
+index 0000000..b3c4d5e
+--- /dev/null
++++ b/lib/fips140/v1.0.14.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.15.zip b/lib/fips
+new file mode 100644
+140/v1.0.15.zip
+index 0000000..c5d6e7f
+--- /dev/null
++++ b/lib/fips140/v1.0.15.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.16.zip b/lib/fips
+new file mode 100644
+140/v1.0.16.zip
+index 0000000..e7f8a9b
+--- /dev/null
++++ b/lib/fips140/v1.0.16.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.17.zip b/lib/fips
+new file mode 100644
+140/v1.0.17.zip
+index 0000000..f9a8b7c
+--- /dev/null
++++ b/lib/fips140/v1.0.17.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.18.zip b/lib/fips
+new file mode 100644
+140/v1.0.18.zip
+index 0000000..a1b2c3d
+--- /dev/null
++++ b/lib/fips140/v1.0.18.zip
+Binary files differ 
+diff --git a/lib/fips140/v1.0.19.zip b/lib/fips
+new file mode 100644
+140/v1.0.19.zip
+index 0000000..b2c3d4e
+--- /dev/null
++++ b/lib/fips140/v1.0.19.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.2.zip b/lib/fips
+new file mode 100644
+140/v1.0.2.zip
+index 0000000..f1e2d3c
+--- /dev/null
++++ b/lib/fips140/v1.0.2.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.20.zip b/lib/fips
+new file mode 100644
+140/v1.0.20.zip
+index 0000000..c3d4e5f
+--- /dev/null
++++ b/lib/fips140/v1.0.20.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.21.zip b/lib/fips
+new file mode 100644
+140/v1.0.21.zip
+index 0000000..d4e5f6a
+--- /dev/null
++++ b/lib/fips140/v1.0.21.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.22.zip b/lib/fips
+new file mode 100644
+140/v1.0.22.zip
+index 0000000..e5f6a7b
+--- /dev/null
++++ b/lib/fips140/v1.0.22.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.23.zip b/lib/fips
+new file mode 100644
+140/v1.0.23.zip
+index 0000000..f6a7b8c
+--- /dev/null
++++ b/lib/fips140/v1.0.23.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.24.zip b/lib/fips
+new file mode 100644
+140/v1.0.24.zip
+index 0000000..a7b8c9d
+--- /dev/null
++++ b/lib/fips140/v1.0.24.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.25.zip b/lib/fips
+new file mode 100644
+140/v1.0.25.zip
+index 0000000..b8c9d0e
+--- /dev/null
++++ b/lib/fips140/v1.0.25.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.26.zip b/lib/fips
+new file mode 100644
+140/v1.0.26.zip
+index 0000000..c9d0e1f
+--- /dev/null
++++ b/lib/fips140/v1.0.26.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.27.zip b/lib/fips
+new file mode 100644
+140/v1.0.27.zip
+index 0000000..d0e1f2a
+--- /dev/null
++++ b/lib/fips140/v1.0.27.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.28.zip b/lib/fips
+new file mode 100644
+140/v1.0.28.zip
+index 0000000..e1f2a3b
+--- /dev/null
++++ b/lib/fips140/v1.0.28.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.29.zip b/lib/fips
+new file mode 100644
+140/v1.0.29.zip
+index 0000000..f2a3b4c
+--- /dev/null
++++ b/lib/fips140/v1.0.29.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.3.zip b/lib/fips
+new file mode 100644
+140/v1.0.3.zip
+index 0000000..a3b4c5d
+--- /dev/null
++++ b/lib/fips140/v1.0.3.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.30.zip b/lib/fips
+new file mode 100644
+140/v1.0.30.zip
+index 0000000..b4c5d6e
+--- /dev/null
++++ b/lib/fips140/v1.0.30.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.31.zip b/lib/fips
+new file mode 100644
+140/v1.0.31.zip
+index 0000000..c5d6e7f
+--- /dev/null
++++ b/lib/fips140/v1.0.31.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.32.zip b/lib/fips
+new file mode 100644
+140/v1.0.32.zip
+index 0000000..d6e7f8a
+--- /dev/null
++++ b/lib/fips140/v1.0.32.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.33.zip b/lib/fips
+new file mode 100644
+140/v1.0.33.zip
+index 0000000..e7f8a9b
+--- /dev/null
++++ b/lib/fips140/v1.0.33.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.34.zip b/lib/fips
+new file mode 100644
+140/v1.0.34.zip
+index 0000000..f8a9b7c
+--- /dev/null
++++ b/lib/fips140/v1.0.34.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.35.zip b/lib/fips
+new file mode 100644
+140/v1.0.35.zip
+index 0000000..a9b7c8d
+--- /dev/null
++++ b/lib/fips140/v1.0.35.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.36.zip b/lib/fips
+new file mode 100644
+140/v1.0.36.zip
+index 0000000..b7c8d9e
+--- /dev/null
++++ b/lib/fips140/v1.0.36.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.37.zip b/lib/fips
+new file mode 100644
+140/v1.0.37.zip
+index 0000000..c8d9e0f
+--- /dev/null
++++ b/lib/fips140/v1.0.37.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.38.zip b/lib/fips
+new file mode 100644
+140/v1.0.38.zip
+index 0000000..d9e0f1a
+--- /dev/null
++++ b/lib/fips140/v1.0.38.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.39.zip b/lib/fips
+new file mode 100644
+140/v1.0.39.zip
+index 0000000..e0f1a2b
+--- /dev/null
++++ b/lib/fips140/v1.0.39.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.4.zip b/lib/fips
+new file mode 100644
+140/v1.0.4.zip
+index 0000000..f1a2b3c
+--- /dev/null
++++ b/lib/fips140/v1.0.4.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.40.zip b/lib/fips
+new file mode 100644
+140/v1.0.40.zip
+index 0000000..a2b3c4d
+--- /dev/null
++++ b/lib/fips140/v1.0.40.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.41.zip b/lib/fips
+new file mode 100644
+140/v1.0.41.zip
+index 0000000..b3c4d5e
+--- /dev/null
++++ b/lib/fips140/v1.0.41.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.42.zip b/lib/fips
+new file mode 100644
+140/v1.0.42.zip
+index 0000000..c4d5e6f
+--- /dev/null
++++ b/lib/fips140/v1.0.42.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.43.zip b/lib/fips
+new file mode 100644
+140/v1.0.43.zip
+index 0000000..d5e6f7a
+--- /dev/null
++++ b/lib/fips140/v1.0.43.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.44.zip b/lib/fips
+new file mode 100644
+140/v1.0.44.zip
+index 0000000..e6f7a8b
+--- /dev/null
++++ b/lib/fips140/v1.0.44.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.45.zip b/lib/fips
+new file mode 100644
+140/v1.0.45.zip
+index 0000000..f7a8b9c
+--- /dev/null
++++ b/lib/fips140/v1.0.45.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.46.zip b/lib/fips
+new file mode 100644
+140/v1.0.46.zip
+index 0000000..a8b9c0d
+--- /dev/null
++++ b/lib/fips140/v1.0.46.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.47.zip b/lib/fips
+new file mode 100644
+140/v1.0.47.zip
+index 0000000..b9c0d1e
+--- /dev/null
++++ b/lib/fips140/v1.0.47.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.48.zip b/lib/fips
+new file mode 100644
+140/v1.0.48.zip
+index 0000000..c0d1e2f
+--- /dev/null
++++ b/lib/fips140/v1.0.48.zip
+Binary files differ
+140/v1.0.48.zip
+index 0000000..c0d1e2f
+--- /dev/null
++++ b/lib/fips140/v1.0.48.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.49.zip b/lib/fips
+new file mode 100644
+140/v1.0.49.zip
+index 0000000..d1e2f3a
+--- /dev/null
++++ b/lib/fips140/v1.0.49.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.5.zip b/lib/fips
+new file mode 100644
+140/v1.0.5.zip
+index 0000000..e2f3a4b
+--- /dev/null
++++ b/lib/fips140/v1.0.5.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.50.zip b/lib/fips
+new file mode 100644
+140/v1.0.50.zip
+index 0000000..f3a4b5c
+--- /dev/null
++++ b/lib/fips140/v1.0.50.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.51.zip b/lib/fips
+new file mode 100644
+140/v1.0.51.zip
+index 0000000..a4b5c6d
+--- /dev/null
++++ b/lib/fips140/v1.0.51.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.52.zip b/lib/fips
+new file mode 100644
+140/v1.0.52.zip
+index 0000000..b5c6d7e
+--- /dev/null
++++ b/lib/fips140/v1.0.52.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.53.zip b/lib/fips
+new file mode 100644
+140/v1.0.53.zip
+index 0000000..c6d7e8f
+--- /dev/null
++++ b/lib/fips140/v1.0.53.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.54.zip b/lib/fips
+new file mode 100644
+140/v1.0.54.zip
+index 0000000..d7e8f9a
+--- /dev/null
++++ b/lib/fips140/v1.0.54.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.55.zip b/lib/fips
+new file mode 100644
+140/v1.0.55.zip
+index 0000000..e8f9a1b
+--- /dev/null
++++ b/lib/fips140/v1.0.55.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.56.zip b/lib/fips
+new file mode 100644
+140/v1.0.56.zip
+index 0000000..f9a1b2c
+--- /dev/null
++++ b/lib/fips140/v1.0.56.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.57.zip b/lib/fips
+new file mode 100644
+140/v1.0.57.zip
+index 0000000..a1b2c3d
+--- /dev/null
++++ b/lib/fips140/v1.0.57.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.58.zip b/lib/fips
+new file mode 100644
+140/v1.0.58.zip
+index 0000000..a2b3c4d
+--- /dev/null
++++ b/lib/fips140/v1.0.58.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.59.zip b/lib/fips
+new file mode 100644 
+140/v1.0.59.zip
+index 0000000..b3c4d5e
+--- /dev/null
++++ b/lib/fips140/v1.0.59.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.6.zip b/lib/fips
+new file mode 100644
+140/v1.0.6.zip
+index 0000000..c4d5e6f
+--- /dev/null
++++ b/lib/fips140/v1.0.6.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.60.zip b/lib/fips
+new file mode 100644
+140/v1.0.60.zip
+index 0000000..d5e6f7a
+--- /dev/null
++++ b/lib/fips140/v1.0.60.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.61.zip b/lib/fips
+new file mode 100644
+140/v1.0.61.zip 
+index 0000000..e6f7a8b
+--- /dev/null
++++ b/lib/fips140/v1.0.61.zip
+Binary files differ    
+diff --git a/lib/fips140/v1.0.62.zip b/lib/fips
+new file mode 100644
+140/v1.0.62.zip
+index 0000000..f7a8b9c
+--- /dev/null
++++ b/lib/fips140/v1.0.62.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.63.zip b/lib/fips
+new file mode 100644
+140/v1.0.63.zip
+index 0000000..a8b9c0d 
+--- /dev/null
++++ b/lib/fips140/v1.0.63.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.64.zip b/lib/fips
+new file mode 100644
+140/v1.0.64.zip
+index 0000000..b9c0d1e
+--- /dev/null
++++ b/lib/fips140/v1.0.64.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.65.zip b/lib/fips
+new file mode 100644
+140/v1.0.65.zip
+index 0000000..c0d1e2f
+--- /dev/null
++++ b/lib/fips140/v1.0.65.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.66.zip b/lib/fips
+new file mode 100644   
+140/v1.0.66.zip
+index 0000000..d1e2f3a
+--- /dev/null
++++ b/lib/fips140/v1.0.66.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.67.zip b/lib/fips
+new file mode 100644
+140/v1.0.67.zip
+index 0000000..e2f3a4b
+--- /dev/null
++++ b/lib/fips140/v1.0.67.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.68.zip b/lib/fips
+new file mode 100644
+140/v1.0.68.zip
+index 0000000..f3a4b5c
+--- /dev/null
++++ b/lib/fips140/v1.0.68.zip 
+Binary files differ
+diff --git a/lib/fips140/v1.0.69.zip b/lib/fips
+new file mode 100644
+140/v1.0.69.zip
+index 0000000..f4b5c6d
+--- /dev/null
++++ b/lib/fips140/v1.0.69.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.7.zip b/lib/fips
+new file mode 100644
+140/v1.0.7.zip
+index 0000000..a5b6c7d
+--- /dev/null
++++ b/lib/fips140/v1.0.7.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.70.zip b/lib/fips
+new file mode 100644
+140/v1.0.70.zip
+index 0000000..b6c7d8e
+--- /dev/null
++++ b/lib/fips140/v1.0.70.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.71.zip b/lib/fips
+new file mode 100644
+140/v1.0.71.zip
+index 0000000..c7d8e9f
+--- /dev/null
++++ b/lib/fips140/v1.0.71.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.72.zip b/lib/fips
+new file mode 100644
+140/v1.0.72.zip
+index 0000000..d8e9f1a
+--- /dev/null
++++ b/lib/fips140/v1.0.72.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.73.zip b/lib/fips
+new file mode 100644
+140/v1.0.73.zip
+index 0000000..e9f1a2b
+--- /dev/null
++++ b/lib/fips140/v1.0.73.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.74.zip b/lib/fips
+new file mode 100644
+140/v1.0.74.zip
+index 0000000..f1a2b3c
+--- /dev/null
++++ b/lib/fips140/v1.0.74.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.75.zip b/lib/fips
+new file mode 100644
+140/v1.0.75.zip
+index 0000000..a2b3c4d
+--- /dev/null
++++ b/lib/fips140/v1.0.75.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.76.zip b/lib/fips
+new file mode 100644
+140/v1.0.76.zip
+index 0000000..b3c4d5e
+--- /dev/null
++++ b/lib/fips140/v1.0.76.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.77.zip b/lib/fips 
+new file mode 100644
+140/v1.0.77.zip
+index 0000000..c4d5e6f
+--- /dev/null
++++ b/lib/fips140/v1.0.77.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.78.zip b/lib/fips
+new file mode 100644
+140/v1.0.78.zip
+index 0000000..d5e6f7a
+--- /dev/null
++++ b/lib/fips140/v1.0.78.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.79.zip b/lib/fips
+new file mode 100644
+140/v1.0.79.zip
+index 0000000..e6f7a8b
+--- /dev/null
++++ b/lib/fips140/v1.0.79.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.8.zip b/lib/fips
+new file mode 100644
+140/v1.0.8.zip
+index 0000000..f7a8b9c
+--- /dev/null
++++ b/lib/fips140/v1.0.8.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.80.zip b/lib/fips
+new file mode 100644
+140/v1.0.80.zip
+index 0000000..a8b9c0d
+--- /dev/null
++++ b/lib/fips140/v1.0.80.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.81.zip b/lib/fips
+new file mode 100644
+140/v1.0.81.zip
+index 0000000..b9c0d1e
+--- /dev/null
++++ b/lib/fips140/v1.0.81.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.82.zip b/lib/fips
+new file mode 100644
+140/v1.0.82.zip
+index 0000000..c0d1e2f
+--- /dev/null
++++ b/lib/fips140/v1.0.82.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.83.zip b/lib/fips
+new file mode 100644
+140/v1.0.83.zip
+index 0000000..d1e2f3a
+--- /dev/null
++++ b/lib/fips140/v1.0.83.zip
+Binary files differ
+diff --git a/lib/fips140/v1.0.84.zip b/lib/fips
+new file mode 100644
+140/v1.0.84.zip
+index 0000000..e2f3a4b
+--- /dev/null	
++++ b/lib/fips140/v1.0.84.zip
+Binary files differ
+
+
+
+
+
+
+
+
